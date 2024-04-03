@@ -134,5 +134,10 @@ def logout():
     return redirect(url_for("index"))
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
